@@ -137,6 +137,7 @@ void APP_AWS_SUB_Handler(char *p_str)
 }
 
 
+
 RNWF_RESULT_t APP_MQTT_Publish(const char *top, const char *msg)
 {    
     RNWF_MQTT_FRAME_t mqtt_pub;    
@@ -210,8 +211,9 @@ void APP_WIFI_Callback(RNWF_WIFI_EVENT_t event, uint8_t *p_str)
         case RNWF_CONNECTED:
         {
             printf("Wi-Fi Connected\n");
-            
+#ifdef RNWF11_SERVICE            
             RNWF_MQTT_SrvCtrl(RNWF_MQTT_SUBSCRIBE_QOS0, app_buf);
+#endif            
             break;
         }
         case RNWF_DISCONNECTED:
