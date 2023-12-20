@@ -118,7 +118,7 @@ typedef enum {
 #define AZURE_FMT_BUTTON_TEL    "{\\\"buttonEvent\\\": {\\\"button_name\\\":\\\"SW0\\\", \\\"press_count\\\":%d}"
 
 //#define AZURE_FMT_RATE_PROP     "{\\\"reportRate\\\":{\\\"ac\\\":200,\\\"av\\\":%s,\\\"ad\\\":\\\"success\\\",\\\"value\\\":%s}}"
-#define AZURE_FMT_RATE_PROP     "{\\\"reportRate\\\": 0}"
+#define AZURE_FMT_RATE_PROP     "{\\\"reportRate\\\": 1}"
 //#define AZURE_FMT_LED0_PROP     "{\\\"LED0\\\":{\\\"ac\\\":200,\\\"av\\\":%s,\\\"ad\\\":\\\"success\\\",\\\"value\\\":%s}}"
 #define AZURE_FMT_LED0_PROP     "{\\\"LED0\\\": 1}"
 #define AZURE_FMT_DELAY_RSP     "{\\\"status\\\":\\\"Success\\\",\\\"delay\\\":%d}"

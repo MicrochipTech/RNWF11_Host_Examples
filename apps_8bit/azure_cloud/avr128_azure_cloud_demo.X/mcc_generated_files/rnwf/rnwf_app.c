@@ -302,6 +302,12 @@ void APP_AZURE_SUB_Handler(char *p_str)
                 APP_LED_STATE_Handler(atoi(led_ptr));
                 APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
             }
+            else
+            {
+                sprintf(app_buf, AZURE_FMT_LED0_PROP);
+                APP_LED_STATE_Handler(2);
+                APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
+            }
             if(rate_ptr != NULL)
             {
                 rate_ptr += strlen(AZURE_RATE_TAG);
@@ -309,6 +315,12 @@ void APP_AZURE_SUB_Handler(char *p_str)
                 *end_ptr = '\0';
                 sprintf(app_buf, AZURE_FMT_RATE_PROP);
                 g_ReportRate = atoi(rate_ptr) * APP_SYS_TICK_COUNT_1SEC;
+                printf("Report Rate =  %d \r\n", g_ReportRate);
+                APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
+            }
+            else
+            {
+                sprintf(app_buf, AZURE_FMT_RATE_PROP);
                 printf("Report Rate =  %d \r\n", g_ReportRate);
                 APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
             }
