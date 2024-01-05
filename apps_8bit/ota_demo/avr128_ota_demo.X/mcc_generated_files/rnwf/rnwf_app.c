@@ -77,7 +77,7 @@
 
 #define ENTER_BTL_CMD_TIMEOUT       3000
 
-
+#define OTA_IMAGE_WITHOUT_FLFS_SIZE  0xDF000
 
 typedef struct Partition {
     unsigned char status;
@@ -368,7 +368,9 @@ int APP_OTA_Program(uint32_t flash_addr)
     RNWF_OTA_CHUNK_t ota_chunk = { .chunk_addr = 0x90000000, .chunk_ptr = app_buf, .chunk_size = 0x100000};
 
     DBG_MSG_OTA("start: flash_addr = 0x%lx\r\n", flash_addr);
-
+    if (gOta_file_size == OTA_IMAGE_WITHOUT_FLFS_SIZE)
+        ota_chunk.chunk_size = gOta_file_size;
+    
     if (RNWF_OTA_SrvCtrl(RNWF_OTA_DFU_INIT, (void *)NULL) == RNWF_FAIL)
     {
         DBG_MSG_OTA("Fail to enter bootloader mode\r\n");
@@ -377,7 +379,9 @@ int APP_OTA_Program(uint32_t flash_addr)
     while(RNWF_OTA_SrvCtrl(RNWF_OTA_DFU_ERASE, (void *)&ota_chunk.chunk_addr) != RNWF_PASS);
     while(gOta_file_size)
     {                 
+
         ota_chunk.chunk_size = OTA_BUF_LEN_MAX;  
+
         HighSpeed_Read_Cont(flash_addr, ota_chunk.chunk_size, (char *)app_buf); 
         if (RNWF_OTA_SrvCtrl(RNWF_OTA_DFU_WRITE, (void *)&ota_chunk) != RNWF_PASS)
         {
