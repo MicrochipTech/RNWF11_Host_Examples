@@ -81,7 +81,7 @@ const char *cloud_tls_cfg[] = {"DigiCertGlobalRootG2", "rnwf02_device_01", "rnwf
 RNWF_MQTT_CFG_t mqtt_cfg = {
     .url = "g2-cert-dps.azure-devices-provisioning.net",
     .clientid = CLIENT_ID,
-    .username = "0ne00B6AF97/registrations/sn012362DA8ABEC97F01/api-version=2019-03-31",
+    .username = ""AZURE_SCOPE_ID "/registrations/"CLIENT_ID"/api-version=2019-03-31",   //for eg: "0ne00B6AF97/registrations/sn012362DA8ABEC97F01/api-version=2019-03-31"
     .password = "",
     .port = 8883,
     .tls_conf = cloud_tls_cfg,
@@ -206,7 +206,6 @@ void APP_AZURE_Task(void)
         if(!(g_SysTickCount % g_ReportRate))
         {
             APP_AZURE_COUNTER_Telemetry(counter++);     //this will continuously trigger telemetry action
-            APP_AZURE_BUTTON_Telemetry(press_count);
         }
 
         if(g_RebootDelay > 0)
@@ -298,14 +297,14 @@ void APP_AZURE_SUB_Handler(char *p_str)
                 led_ptr += strlen(AZURE_LED0_TAG);
                 end_ptr = (char *)strstr(led_ptr, " \\");
                 *end_ptr = '\0';
-                sprintf(app_buf, AZURE_FMT_LED0_PROP);
+                sprintf(app_buf, AZURE_FMT_LED0_PROP, ver_ptr, led_ptr);
                 APP_LED_STATE_Handler(atoi(led_ptr));
                 APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
             }
             else
             {
-                sprintf(app_buf, AZURE_FMT_LED0_PROP);
-                APP_LED_STATE_Handler(2);
+                sprintf(app_buf, AZURE_FMT_LED0_PROP, ver_ptr, "3");
+                APP_LED_STATE_Handler(3);
                 APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
             }
             if(rate_ptr != NULL)
@@ -313,15 +312,15 @@ void APP_AZURE_SUB_Handler(char *p_str)
                 rate_ptr += strlen(AZURE_RATE_TAG);
                 end_ptr = (char *)strstr(rate_ptr, " \\");
                 *end_ptr = '\0';
-                sprintf(app_buf, AZURE_FMT_RATE_PROP);
+                sprintf(app_buf, AZURE_FMT_RATE_PROP, ver_ptr, rate_ptr);
                 g_ReportRate = atoi(rate_ptr) * APP_SYS_TICK_COUNT_1SEC;
-                printf("Report Rate =  %d \r\n", g_ReportRate);
+                printf("Report Rate = %d \r\n", (g_ReportRate/1000));
                 APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
             }
             else
             {
-                sprintf(app_buf, AZURE_FMT_RATE_PROP);
-                printf("Report Rate =  %d \r\n", g_ReportRate);
+                sprintf(app_buf, AZURE_FMT_RATE_PROP, ver_ptr, "1");
+                printf("Report Rate =  %d \r\n", (g_ReportRate/1000));
                 APP_MQTT_Publish(AZURE_PUB_PROPERTY, app_buf);
             }
         }

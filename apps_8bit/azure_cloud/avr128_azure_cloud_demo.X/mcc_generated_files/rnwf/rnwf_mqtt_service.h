@@ -65,7 +65,7 @@ This page is for advanced users.
 #define RNWF_MQTT_SET_PROTO_VER     "AT+MQTTC=8,%d\r\n"
 #ifdef RNWF11_SERVICE
 #define RNWF_MQTT_SET_READ_LENGTH   "AT+MQTTC=9,%d\r\n"
-#define RNWF_MQTT_SET_SERVER_SEL    "AT+MQTTC=10,1\r\n"
+#define RNWF_MQTT_SET_SERVER_SEL    "AT+MQTTC=10,%d\r\n"
 #define RNWF_MQTT_SET_AZURE_DTMI    "AT+AZUREC=1,\"%s\"\r\n"
 #endif
 

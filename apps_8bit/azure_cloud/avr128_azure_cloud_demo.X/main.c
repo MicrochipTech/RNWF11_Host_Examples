@@ -105,6 +105,41 @@ int main(void)
 	char * token = strtok((char *)app_buf, "\"");
     token = strtok(NULL, "\"");
     printf("\r\nSerial number:- sn%s\n", token);
+
+    RNWF_ECC_CERT_CFG_t cert_cfg_dev[] = {1, 1500};
+    RNWF_ECC_SrvCtrl(RNWF_ECC_RD_CERT, cert_cfg_dev);
+    printf("\r\nDevice certificate:\n");
+    for(int i = 1; cert_cfg_dev->cert[i] != '\0'; i++)
+    {
+        if((cert_cfg_dev->cert[i] == '\\' && cert_cfg_dev->cert[++i] == 'n') ||
+            (cert_cfg_dev->cert[i] == '"'))
+        {
+            printf("\r\n");
+
+        }
+        else
+        {
+            printf("%c",cert_cfg_dev->cert[i]);
+        }
+    }
+
+    RNWF_ECC_CERT_CFG_t cert_cfg_sig[] = {2, 1500};
+    RNWF_ECC_SrvCtrl(RNWF_ECC_RD_CERT, cert_cfg_sig);
+    printf("\r\nSigner certificate:\n");
+    for(int i = 1; cert_cfg_sig->cert[i] != '\0'; i++)
+    {
+        if((cert_cfg_sig->cert[i] == '\\' && cert_cfg_sig->cert[++i] == 'n') ||
+            (cert_cfg_sig->cert[i] == '"'))
+        {
+            printf("\r\n");
+
+        }
+        else
+        {
+            printf("%c",cert_cfg_sig->cert[i]);
+        }
+    }
+
 #endif
 
 	RNWF_APP_Initialize();    // Note: This function call never returns because of an infinite while-loop

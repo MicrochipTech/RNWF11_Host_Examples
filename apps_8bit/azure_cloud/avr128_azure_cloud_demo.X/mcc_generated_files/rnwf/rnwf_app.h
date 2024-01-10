@@ -97,9 +97,11 @@ typedef enum {
 /* Cloud Configuration */
 #define CLIENT_ID         "sn012362DA8ABEC97F01"
 #define AZURE_SCOPE_ID          "0ne00B6AF97"
-#define AZURE_PUB_TELEMETRY     "devices/sn012362DA8ABEC97F01/messages/events/"
+#define AZURE_PUB_TELEMETRY     "devices/"CLIENT_ID"/messages/events/"
+//for eg: "devices/sn012362DA8ABEC97F01/messages/events"
 
 #ifdef RNWF11_SERVICE
+#define AZURE_MODEL_ID          "dtmi:com:Microchip:AVR128DB48_CNANO;1"
 #define RNWF_TLS_USE_ECC608 1
 #define RNWF_TLS_ECC608_DEVTYPE 1   //1-TNG 2-TFlex
 #endif
@@ -117,10 +119,8 @@ typedef enum {
 #ifdef RNWF11_SERVICE
 #define AZURE_FMT_BUTTON_TEL    "{\\\"buttonEvent\\\": {\\\"button_name\\\":\\\"SW0\\\", \\\"press_count\\\":%d}"
 
-//#define AZURE_FMT_RATE_PROP     "{\\\"reportRate\\\":{\\\"ac\\\":200,\\\"av\\\":%s,\\\"ad\\\":\\\"success\\\",\\\"value\\\":%s}}"
-#define AZURE_FMT_RATE_PROP     "{\\\"reportRate\\\": 1}"
-//#define AZURE_FMT_LED0_PROP     "{\\\"LED0\\\":{\\\"ac\\\":200,\\\"av\\\":%s,\\\"ad\\\":\\\"success\\\",\\\"value\\\":%s}}"
-#define AZURE_FMT_LED0_PROP     "{\\\"LED0\\\": 1}"
+#define AZURE_FMT_RATE_PROP     "{\\\"reportRate\\\":{\\\"ac\\\":200,\\\"av\\\":%s,\\\"ad\\\":\\\"success\\\",\\\"value\\\":%s}}"
+#define AZURE_FMT_LED0_PROP     "{\\\"LED0\\\":{\\\"ac\\\":200,\\\"av\\\":%s,\\\"ad\\\":\\\"success\\\",\\\"value\\\":%s}}"
 #define AZURE_FMT_DELAY_RSP     "{\\\"status\\\":\\\"Success\\\",\\\"delay\\\":%d}"
 #define AZURE_FMT_ECHO_RSP      "{\\\"echoString\\\":\\\"%s\\\"}"
 

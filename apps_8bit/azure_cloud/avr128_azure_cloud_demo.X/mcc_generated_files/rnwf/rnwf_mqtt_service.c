@@ -55,6 +55,9 @@ easy and quick applciation development.
 
 #include "../timer/delay.h"
 
+#ifdef RNWF11_SERVICE
+#include "rnwf_app.h"
+#endif
 #include "rnwf_interface.h"
 #include "rnwf_mqtt_service.h"
 #include "rnwf_net_service.h"
@@ -62,7 +65,8 @@ easy and quick applciation development.
 
 
 #define MQTT_DPS_TOP_SET_REG        "$dps/registrations/PUT/iotdps-register/?$rid=1"
-#define MQTT_DPS_MSG_SET_REQ        "{\\\"payload\\\": {\\\"modelId\\\": \\\"dtmi:com:Microchip:AVR128DB48_CNANO;1\\\"}}"
+//#define MQTT_DPS_MSG_SET_REQ        "{\\\"payload\\\": {\\\"modelId\\\": \\\"dtmi:com:Microchip:AVR128DB48_CNANO;1\\\"}}"
+#define MQTT_DPS_MSG_SET_REQ        "{\\\"payload\\\": {\\\"modelId\\\": \\\""AZURE_MODEL_ID"\\\"}}"
 
 #define MQTT_DPS_TOP_DPS_GET_STAT   "$dps/registrations/GET/iotdps-get-operationstatus/?$rid=2&operationId=%s"
 #define MQTT_DPS_MSG_DPS_GET_STAT   ""
@@ -221,7 +225,7 @@ RNWF_RESULT_t result = RNWF_FAIL;
             result = RNWF_CMD_SEND_OK_WAIT(NULL, NULL, RNWF_MQTT_SET_PASSWORD, mqtt_cfg->password);
             result = RNWF_CMD_SEND_OK_WAIT(NULL, NULL, RNWF_MQTT_SET_KEEPALIVE, 60);
 #ifdef RNWF11_SERVICE
-			result = RNWF_CMD_SEND_OK_WAIT(NULL, NULL, RNWF_MQTT_SET_SERVER_SEL, NULL);
+			result = RNWF_CMD_SEND_OK_WAIT(NULL, NULL, RNWF_MQTT_SET_SERVER_SEL, mqtt_cfg->azure_dps);
             result = RNWF_CMD_SEND_OK_WAIT(NULL, NULL, RNWF_MQTT_SET_READ_LENGTH, 600);
             strcpy((char *)device_temp, MQTT_DPS_MSG_SET_REQ);
             begin = strstr((char *)device_temp, "dtmi:");
