@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Package name="wireless_system_rnwf">
+    <Dependencies>
+        <Dependency name="csp" version="v3.18.1"/>
+        <Dependency name="core" version="v3.13.1"/>
+        <Dependency name="bsp" version="v3.17.0"/>
+    </Dependencies>
+</Package>

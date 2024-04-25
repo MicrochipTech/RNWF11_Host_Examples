@@ -1,0 +1,4 @@
+
+<#if SYS_RNWF_VARIANTS == "RNWF11">
+#define RNWF11_SERVICE
+</#if>

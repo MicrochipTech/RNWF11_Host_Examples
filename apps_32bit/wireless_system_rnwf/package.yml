@@ -1,0 +1,19 @@
+package:
+  format-version: "1.0.0"
+  name: "wireless_system_rnwf"
+  type: "api"
+  status: "production"
+  required: false
+  version: "v1.0.0"
+  
+  dependencies:
+    - name: "csp"
+      type: "package"
+      version: "v3.18.1"
+    - name: "core"
+      type: "package"
+      version: "v3.13.1"
+    - name: "bsp"
+      type: "package"
+      version: "v3.17.0"
+
