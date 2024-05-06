@@ -15,7 +15,6 @@ compiler: XC32 4.21
 
 modules:
     - {name: "csp", version: "v3.18.2"}
-    - {name: "wireless_system_rnwf", version: "rnwf11_dev"}
     - {name: "core", version: "v3.13.3"}
     - {name: "CMSIS_5", version: "5.8.0"}
     - {name: "bsp", version: "v3.17.0"}
