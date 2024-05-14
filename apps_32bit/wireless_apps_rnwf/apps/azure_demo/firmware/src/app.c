@@ -89,7 +89,7 @@ SYS_RNWF_MQTT_CFG_t mqtt_cfg = {
 
 
 /* APP Cloud Telemetry Rate in seconds */
-static uint16_t g_reportRate = APP_CLOUD_REPORT_INTERVAL;
+//static uint16_t g_reportRate = APP_CLOUD_REPORT_INTERVAL;
 
 
 /*Azure app buffer*/
@@ -174,17 +174,16 @@ static void APP_RNWF_AZURE_Task(void)
 {
     static uint32_t press_count = 0;
     static uint32_t counter = 0;
-   
-    if(!(g_sysTickCount % APP_SYS_TICK_COUNT_1SEC))
-    {     
-        if(!(g_sysTickCount % g_reportRate))
-        {
-            APP_RNWF_azureCounterTelemetry(++counter);
-            
-            APP_RNWF_azureButtonTelemetry(press_count);
-        }                   
-    }  
+    uint32_t totalTickCount = g_sysTickCount + SYS_TIME_MSToCount(APP_CLOUD_REPORT_INTERVAL);
     
+    if(totalTickCount < SYS_TIME_CounterGet())
+    {     
+        APP_RNWF_azureCounterTelemetry(++counter);
+            
+        APP_RNWF_azureButtonTelemetry(press_count);                   
+        g_sysTickCount = SYS_TIME_CounterGet();
+    }
+       
     if(g_buttonPress)
     {        
         APP_RNWF_azureButtonTelemetry(++press_count);
@@ -260,6 +259,7 @@ SYS_RNWF_RESULT_t APP_MQTT_Callback(SYS_RNWF_MQTT_EVENT_t event, uint8_t *p_str)
         /* MQTT connected event code*/
         case SYS_RNWF_MQTT_CONNECTED:
         {    
+            g_sysTickCount = SYS_TIME_CounterGet();
             SYS_CONSOLE_PRINT("MQTT : Connected\r\n");
             g_appState = APP_CLOUD_UP;
             break;
@@ -344,8 +344,18 @@ void APP_WIFI_Callback(SYS_RNWF_WIFI_EVENT_t event, uint8_t *p_str)
         /* Wi-Fi DHCP complete event code*/
         case SYS_RNWF_DHCP_DONE:
         {
-            SYS_CONSOLE_PRINT("DHCP IP:%s\r\n", &p_str[2]); 
-            strncpy((char *)g_devIp,(const char *) &p_str[3], strlen((const char *)(&p_str[3]))-1);
+            SYS_CONSOLE_PRINT("DHCP IP:%s\r\n", &p_str[2]);
+            uint8_t flag=0;
+            for(int i=3; i<=strlen((const char *) &p_str[3]); i++)
+            {
+                if((p_str[i] >= 'A') && (p_str[i] <= 'Z'))
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+            if(!flag)
+                strncpy((char *)g_devIp,(const char *) &p_str[3], strlen((const char *)(&p_str[3]))-1);
             break;
         }
         

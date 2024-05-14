@@ -91,10 +91,10 @@ extern "C" {
     
 
 /* System Tick timer tick for 1Sec */
-#define APP_SYS_TICK_COUNT_1SEC 600
+#define APP_SYS_TICK_COUNT_1SEC 1000
     
 /* APP Cloud Telemetry Rate in seconds */
-#define APP_CLOUD_REPORT_INTERVAL  2 * APP_SYS_TICK_COUNT_1SEC
+#define APP_CLOUD_REPORT_INTERVAL  5 * APP_SYS_TICK_COUNT_1SEC
 
     
  /* Application generic purpose buffer size */

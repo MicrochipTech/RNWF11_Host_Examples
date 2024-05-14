@@ -99,7 +99,7 @@ extern "C" {
 #define SYS_RNWF_MQTT_QOS_TYPE					SYS_RNWF_MQTT_QOS0
 
 #define SYS_RNWF_MQTT_RETAIN_TYPE				SYS_RNWF_NO_RETAIN
-#define SYS_RNWF_MQTT_TOPIC_NAME        	    "devices/"SYS_RNWF_MQTT_CLIENT_ID"/messages/events/"
+#define SYS_RNWF_MQTT_TOPIC_NAME        	    "devices/sn012362DA8ABEC97F01/messages/events/"
 
 #define SYS_RNWF_MQTT_CLIENT_ID       			"sn012362DA8ABEC97F01"
 #define SYS_RNWF_MQTT_SCOPE_ID       			"0ne00C6F746"
