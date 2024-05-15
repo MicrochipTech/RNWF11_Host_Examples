@@ -28,7 +28,7 @@ The RNWF11 Add On Board offers:
 
 ## Documents
 
-- [RNWF11 Application Developer Guide](https://TBD) - RNWF11 Application Developer Guide.
+- [RNWF11 Application Developer Guide](https://onlinedocs.microchip.com/oxy/GUID-209426F5-2F78-4B3F-80A0-AD79A119381E-en-US-2/index.html) - RNWF11 Application Developer Guide.
 
 ## Hardware Setup
 ### Hardware Requirements
