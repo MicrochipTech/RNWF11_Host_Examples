@@ -104,6 +104,16 @@ extern "C" {
 #define SYS_RNWF_TLS_ENABLE1					0
 
 #define SYS_RNWF_NET_SockCallbackHandler  	    APP_SOCKET_Callback
+
+#define RNWF11_SERVICE
+
+
+#define SYS_DEBUG_ENABLE
+#define SYS_DEBUG_GLOBAL_ERROR_LEVEL       SYS_ERROR_DEBUG
+#define SYS_DEBUG_BUFFER_DMA_READY
+#define SYS_DEBUG_USE_CONSOLE
+
+
 /* TIME System Service Configuration Options */
 #define SYS_TIME_INDEX_0                            (0)
 #define SYS_TIME_MAX_TIMERS                         (5)
@@ -112,13 +122,6 @@ extern "C" {
 #define SYS_TIME_HW_COUNTER_HALF_PERIOD             (SYS_TIME_HW_COUNTER_PERIOD>>1)
 #define SYS_TIME_CPU_CLOCK_FREQUENCY                (120000000)
 #define SYS_TIME_COMPARE_UPDATE_EXECUTION_CYCLES    (232)
-
-
-#define SYS_DEBUG_ENABLE
-#define SYS_DEBUG_GLOBAL_ERROR_LEVEL       SYS_ERROR_DEBUG
-#define SYS_DEBUG_BUFFER_DMA_READY
-#define SYS_DEBUG_USE_CONSOLE
-
 
 
 #define SYS_RNWF_TLS_USE_ECC608		1
