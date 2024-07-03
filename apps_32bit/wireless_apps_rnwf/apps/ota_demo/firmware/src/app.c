@@ -748,7 +748,7 @@ void APP_Tasks
         case APP_STATE_INITIALIZE:
         {
             SYS_CONSOLE_PRINT("%s", "##############################################\r\n");
-            SYS_CONSOLE_PRINT("%s", "  Welcome RNWF02 WiFi Host Assisted OTA Demo  \r\n");
+            SYS_CONSOLE_PRINT("%s", "  Welcome RNWF11 WiFi Host Assisted OTA Demo  \r\n");
             SYS_CONSOLE_PRINT("%s", "##############################################\r\n\r\n"); 
             
             SYS_RNWF_SYSTEM_Module_Init(SYS_RNWF_SYSTEM_APP_MODE);

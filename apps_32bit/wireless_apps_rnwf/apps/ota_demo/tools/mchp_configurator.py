@@ -4,7 +4,7 @@ import socket
 
 DEFAULT_OTA_SERVER = "192.168.205.75"
 DEFAULT_OTA_PORT   = "8000"
-DEFAULT_OTA_IMAGE  = "fw1_june7.bin"
+DEFAULT_OTA_IMAGE  = "at_cmd_app_rtos.X.production.ota.bin"
 
 def is_ipv4_ip(address):
     if(address != '127.0.0.1'):
@@ -50,9 +50,12 @@ def check_port(ip_address, port):
             if result == 0:
                 s.settimeout(5)  # Set the socket timeout to 1 second
                 print("\r\n#########Device Found!#########\r\n")                                
+                # comment below for RNWF11 which not support AT+DI command
+                
                 recv_buf = s.recv(512)
                 recv_buf = recv_buf.decode('utf-8', 'ignore')                
                 dev_info = recv_buf.split(' ')
+                '''
                 # print(dev_info)
                 dev_dict = {}
                 for info in dev_info:
@@ -65,6 +68,7 @@ def check_port(ip_address, port):
                 print('Device ID = ', hex(int(dev_dict['1'])))
                 print('Num of Images = ', hex(int(dev_dict['14'])))
                 # print('Num of Images = ', hex(int(dev_dict['15.0'])))
+                '''
                 print("\r\n###########################\r\n")  
             
                 print(f"Port {port} is open on {ip_address}")                    
