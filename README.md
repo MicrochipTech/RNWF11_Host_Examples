@@ -124,4 +124,4 @@ Example:
         
 ## Secure Provisioning & Transport Layer Security
 
-The RNWF11 Add On Boards kits are shipped with the RNWF11 module variant that include an on-board Trust&Go secure element. Since Trust&Go devices are pre-provisioned, the customer does not need to programe the device certificate for each of his devices and the firmware can utilise the on-chip certificate to securely authenticate with AWS IoT Core/ Azure IoT Hub.
+The RNWF11 Add On Boards kits are shipped with the RNWF11PC module variant. The on-board TrustFLEX hardware secure element provides users a secure option to connect to cloud servers that require proprietary authentication. Since RNWF11PC devices are pre-provisioned, the customer does not need to programe the device certificate for each of his devices and the firmware can utilise the on-chip certificate to securely authenticate with AWS IoT Core/ Azure IoT Hub.
