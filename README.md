@@ -124,5 +124,5 @@ Example:
         
 ## Secure Provisioning & Transport Layer Security
 
-The RNWF11 Add On Boards kits are shipped with the RNWF11PC module variant. Since RNWF11PC devices are pre-provisioned, the customer does not need to programe the device certificate for each of his devices and the firmware can utilise the on-chip certificate to securely authenticate with AWS IoT Core/ Azure IoT Hub.
+The RNWF11 Add On Boards kits are shipped with the RNWF11PC module variant. Since RNWF11PC devices are pre-provisioned, the customer does not need to programme the device certificate for each of his devices and the firmware can utilise the on-chip certificate to securely authenticate with AWS IoT Core/ Azure IoT Hub.
 The TrustFLEX hardware secure element on the Add On Board provides users a secure option to connect to cloud servers that require proprietary authentication.
